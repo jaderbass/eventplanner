@@ -1,0 +1,26 @@
+{
+  "name": "eventplanner",
+  "version": "1.0.0",
+  "description": "Durchgängiges React-Kursprojekt.",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaderbass/eventplanner.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jaderbass/eventplanner/issues"
+  },
+  "homepage": "https://github.com/jaderbass/eventplanner#readme",
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  }
+}
