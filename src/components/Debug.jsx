@@ -1,4 +1,4 @@
-import EventCard from "./EventCard.jsx";
+import EventCard from "./EventCard.jsx"
 import events from "../data/events.js";
 
 export default function EventList() {
