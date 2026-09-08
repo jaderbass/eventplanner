@@ -26,3 +26,72 @@ form {
     margin: 0;
   }
 }
+
+.section {
+  margin-block: 2rem;
+}
+
+.section>h2 {
+  margin-bottom: 1rem;
+}
+
+.section-content {
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 0.5rem;
+}
+
+/* ? === Formulare === */
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.search-form {
+  margin-block: 2rem;
+}
+
+.search-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.search-row input {
+  flex: 1;
+}
+
+.search-row button {
+  flex: 0 0 auto;
+}
