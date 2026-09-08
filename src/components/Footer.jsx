@@ -2,7 +2,9 @@
 export default function Footer() {
   return (
     <footer>
-      <p>&copy; EventPlanner</p>
+      <div className="container">
+        <p>&copy; EventPlanner</p>
+      </div>
     </footer>
   );
 }

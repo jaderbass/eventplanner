@@ -1,5 +1,7 @@
 import { createRoot } from "react-dom/client";
 
+import "./style.css";
+
 // relative Pfadangaben wie in HTML, z.B. "components/Header.jsx" funktionieren nicht in JSX
 // sie würden bei dieser Syntax wie Module behandelt. Richtig: "./components/Header.jsx".
 import Header from "./components/Header.jsx";
@@ -17,8 +19,10 @@ function App() {
     <>
       <Header />
       <main>
-        <Search />
-        <EventList />
+        <div className="container">
+          <Search />
+          <EventList />
+        </div>
       </main>
       <Footer />
     </>

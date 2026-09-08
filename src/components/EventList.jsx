@@ -2,7 +2,7 @@ import EventCard from "./EventCard.jsx";
 
 export default function EventList() {
   return (
-    <section>
+    <section className="event-list">
       <EventCard 
         title="React Grundlagen"
         date="12. September 2026"

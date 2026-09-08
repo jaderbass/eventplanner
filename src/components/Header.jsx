@@ -2,7 +2,9 @@
 export default function Header() {
   return (
     <header>
-      <h1>EventPlanner</h1>
+      <div className="container">
+        <h1>EventPlanner</h1>
+      </div>
     </header>
   );
 }
