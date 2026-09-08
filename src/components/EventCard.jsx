@@ -1,28 +1,42 @@
-export default function EventCard(props) {
+export default function EventCard({
+  title,
+  date,
+  level,
+  time,
+  duration,
+  location,
+  speaker,
+  price,
+  online,
+  category,
+  seats,
+  featured,
+  registrationOpen
+}) {
   return (
     <article
       className={`event-card
-        ${props.online ? "online" : "onsite"}
-        ${props.seats === 0 ? "sold-out" : ""}
-        ${props.featured ? "featured" : ""}`}
+        ${online ? "online" : "onsite"}
+        ${seats === 0 ? "sold-out" : ""}
+        ${featured ? "featured" : ""}`}
     >
-      <h2> {props.title} </h2>
-      <p> {props.date} </p>
-      <p> Schwierigkeit: {props.level} </p>
-      <p> Beginn: {props.time} Uhr </p>
-      <p> Dauer: {props.duration} UE</p>
-      <p> Trainer: {props.speaker} </p>
-      <p> Preis: {props.price} € </p>
-      <p> {props.online ? "Online" : props.location} </p>
-      <p> Kategorie: {props.category} </p>
+      <h2> {title} </h2>
+      <p> {date} </p>
+      <p> Schwierigkeit: {level} </p>
+      <p> Beginn: {time} Uhr </p>
+      <p> Dauer: {duration} UE</p>
+      <p> Trainer: {speaker} </p>
+      <p> Preis: {price} € </p>
+      <p> {online ? "Online" : location} </p>
+      <p> Kategorie: {category} </p>
       <p>
-        freie Plätze: {props.seats} {props.seats === 0 && <i>(ausgebucht)</i>} <br />
-        {props.seats > 0 && props.seats < 3 && (<small>Nur noch wenige Plätze</small>)}
+        freie Plätze: {seats} {seats === 0 && <i>(ausgebucht)</i>} <br />
+        {seats > 0 && seats < 3 && (<small>Nur noch wenige Plätze</small>)}
       </p>
-      <p> {props.featured && <strong>Empfohen</strong>} </p>
+      <p> {featured && <strong>Empfohen</strong>} </p>
 
-      <button disabled={props.seats === 0} >Details</button>
-      <button type="button" disabled={!props.registrationOpen}>Registrieren</button>
+      <button disabled={seats === 0} >Details</button>
+      <button type="button" disabled={!registrationOpen}>Registrieren</button>
     </article>
   );
 }
