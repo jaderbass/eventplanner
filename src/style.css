@@ -59,6 +59,13 @@ form {
   border-radius: 0.5rem;
 }
 
+.interaction-card {
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
 /* ? === Formulare === */
 
 form {
@@ -80,10 +87,11 @@ button {
 input,
 select,
 textarea {
-  width: 100%;
+  max-width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 0.375rem;
+  margin-bottom: 1rem;
 }
 
 textarea {
@@ -91,10 +99,12 @@ textarea {
 }
 
 button {
+  display: block;
   padding: 0.75rem 1rem;
   border: 0;
   border-radius: 0.375rem;
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 .search-form {

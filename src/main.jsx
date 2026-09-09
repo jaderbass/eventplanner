@@ -10,6 +10,7 @@ import Search from "./components/Search.jsx";
 import EventList from "./components/EventList.jsx";
 import InfoBox from "./components/InfoBox.jsx";
 import Section from "./components/Section.jsx";
+import InteracionCard from "./components/InteractionCard.jsx";
 
 const root = createRoot(document.querySelector("#root"));
 
@@ -22,6 +23,9 @@ function App() {
       <Header />
       <main>
         <div className="container">
+
+          <InteracionCard title={"Ereignisbehandlung"} />
+
           <Search />
 
           <InfoBox title="Hinweis">
