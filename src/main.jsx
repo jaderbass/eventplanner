@@ -11,6 +11,9 @@ import EventList from "./components/EventList.jsx";
 import InfoBox from "./components/InfoBox.jsx";
 import Section from "./components/Section.jsx";
 import InteracionCard from "./components/InteractionCard.jsx";
+import Counter from "./components/Counter.jsx";
+import Toggle from "./components/Toggle.jsx";
+import NameInput from "./components/NameInput.jsx";
 
 const root = createRoot(document.querySelector("#root"));
 
@@ -24,15 +27,19 @@ function App() {
       <main>
         <div className="container">
 
-          <InteracionCard title={"Ereignisbehandlung"} />
+          {/* <NameInput />
+
+          <Toggle />
+
+          <Counter />
+
+          <InteracionCard title={"Ereignisbehandlung"} /> */}
 
           <Search />
 
           <InfoBox title="Hinweis">
             <p>Die Anmeldung ist ab sofort möglich.</p>
           </InfoBox>
-
-
 
           <Section title="Nächste Veranstaltungen">
             <p>Hier findest Du eine Auswahl unserer kommenden Events.</p>

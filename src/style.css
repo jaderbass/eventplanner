@@ -11,6 +11,10 @@ form {
   margin-bottom: 1rem;
 }
 
+.fw-normal {
+  font-weight: normal !important;
+}
+
 .event-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -40,9 +44,39 @@ form {
     color: #aaa;
   }
 
+  &.favorite {
+    background-color: rgba(25, 135, 84, 0.1);
+  }
+
   p {
     margin: 0;
+
+    &:last-of-type {
+      margin-bottom: 1rem;
+    }
   }
+}
+
+.badge {
+  --bs-badge-padding-x: 0.65em;
+  --bs-badge-padding-y: 0.35em;
+  --bs-badge-font-size: 0.5em;
+  --bs-badge-font-weight: 700;
+  --bs-badge-color: #fff;
+  --bs-badge-border-radius: 0.25rem;
+  display: inline-block;
+  padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
+  font-size: var(--bs-badge-font-size);
+  font-weight: var(--bs-badge-font-weight);
+  line-height: 1;
+  color: var(--bs-badge-color);
+  text-align: center;
+  border-radius: var(--bs-badge-border-radius);
+}
+
+.text-bg-success {
+  color: #fff !important;
+  background-color: rgba(25, 135, 84, 1) !important;
 }
 
 .section {
