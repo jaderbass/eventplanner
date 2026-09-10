@@ -9,7 +9,9 @@ export default function RegistrationManager() {
   });
 
   const [registrations, setRegistrations] = useState([]);
-  const [successMessage, setSuccessMessage] = useState("");
+
+  const [error, setError] = useState("");
+  const [successBooking, setSuccessBooking] = useState(null);
 
   function handleChange(event) {
     const {
@@ -20,21 +22,44 @@ export default function RegistrationManager() {
 
     setFormData({
       ...formData,
-      [name]: type === "number" ? Number(value) : value
+      [name]:
+        type === "number"
+          ? Number(value)
+          : value
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    setSuccessMessage("");
+    setError("");
+    setSuccessBooking(null);
+
+    if (formData.name.trim() === "") {
+      setError("Bitte einen Namen eingeben.");
+      return;
+    }
+
+    if (formData.email.trim() === "") {
+      setError("Bitte eine E-Mail-Adresse eingeben.");
+      return;
+    }
+
+    if (formData.eventId === "") {
+      setError("Bitte eine Veranstaltung auswählen.");
+      return;
+    }
+
+    if (formData.participants < 1) {
+      setError(
+        "Die Teilnehmerzahl muss mindestens 1 betragen."
+      );
+      return;
+    }
 
     const registration = {
       id: Date.now(),
-      name: formData.name,
-      email: formData.email,
-      participants: formData.participants,
-      eventId: formData.eventId
+      ...formData
     };
 
     setRegistrations([
@@ -42,7 +67,10 @@ export default function RegistrationManager() {
       registration
     ]);
 
-    setSuccessMessage(`Die Registrierung für ${formData.name} (${formData.email}) erfolgreich abgeschlossen.`);
+    setSuccessBooking({
+      name: formData.name,
+      eventId: formData.eventId
+    });
 
     setFormData({
       name: "",
@@ -53,62 +81,126 @@ export default function RegistrationManager() {
   }
 
   return (
-    <section>
-      <h2>Anmeldung</h2>
+    <section className="registration-manager">
+      <h2>Event-Anmeldung</h2>
 
-      {successMessage && (
-        <p className="alert success-message">
-          {successMessage}
+      {error && (
+        <p className="error-message">
+          {error}
+        </p>
+      )}
+
+      {successBooking && (
+        <p className="success-message">
+          Die Anmeldung für{" "}
+          <strong>{successBooking.name}</strong>{" "}
+          wurde erfolgreich erfasst.
         </p>
       )}
 
       <form onSubmit={handleSubmit}>
-
         <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} />
+          <label htmlFor="name">
+            Name
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
         </div>
 
         <div>
-          <label htmlFor="email">E-Mail-Adresse:</label>
-          <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} />
+          <label htmlFor="email">
+            E-Mail
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
         </div>
 
         <div>
-          <label htmlFor="participants">Teilnehmer:</label>
-          <input type="number" name="participants" id="participants" value={formData.participants} onChange={handleChange} />
+          <label htmlFor="participants">
+            Teilnehmer
+          </label>
+
+          <input
+            type="number"
+            id="participants"
+            name="participants"
+            min="1"
+            value={formData.participants}
+            onChange={handleChange}
+          />
         </div>
 
         <div>
-          <button type="submit">Registrieren</button>
+          <label htmlFor="eventId">
+            Veranstaltung
+          </label>
+
+          <select
+            id="eventId"
+            name="eventId"
+            value={formData.eventId}
+            onChange={handleChange}
+          >
+            <option value="" disabled>
+              Bitte wählen
+            </option>
+
+            <option value="1">
+              React Grundlagen
+            </option>
+
+            <option value="2">
+              JSX und Komponenten
+            </option>
+
+            <option value="3">
+              State und Events
+            </option>
+          </select>
         </div>
 
+        <button type="submit">
+          Anmeldung senden
+        </button>
       </form>
 
-      <section>
-        <h2>Anmeldungen ({registrations.length})</h2>
+      <section className="registrations">
+        <h2>
+          Anmeldungen ({registrations.length})
+        </h2>
 
         {registrations.length === 0 && (
-          <p>Noch keine Anmeldungen vorhanden.</p>
+          <p>
+            Noch keine Anmeldungen vorhanden.
+          </p>
         )}
 
-        {
-          registrations.map(
-            (registration) => (
-              <article key={registration.id}>
-                <h3>{registration.name}</h3>
+        {registrations.map((registration) => (
+          <article
+            key={registration.id}
+            className="registration-card"
+          >
+            <h3>{registration.name}</h3>
 
-                <p>
-                  {registration.email} <br />
-
-                  Teilnehmer: {registration.participants} <br />
-
-                  ID: {registration.eventId}
-                </p>
-              </article>
-            )
-          )
-        }
+            <p>
+              E-Mail: {registration.email} <br />
+              Teilnehmer: {registration.participants} <br />
+              Event-ID: {registration.eventId}
+            </p>
+          </article>
+        ))}
       </section>
     </section>
   );
