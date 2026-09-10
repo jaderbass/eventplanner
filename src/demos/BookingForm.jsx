@@ -1,16 +1,44 @@
 import { useState } from "react";
 
 export default function BookingForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [participants, setParticipants] = useState(1);
-  const [course, setCourse] = useState(""); // select
-  const [company, setCompany] = useState("");
-  const [notes, setNotes] = useState("");
-  const [newsletter, setNewsletter] = useState(false); // checkbox
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    participants: 1,
+    course: "",
+    date: "",
+    company: "",
+    notes: "",
+    newsletter: false
+  });
+
   const [error, setError] = useState("");
-  // const [successMessage, setSuccessMessage] = useState("");
   const [successBooking, setSuccessBooking] = useState(null);
+
+  function handleChange(event) {
+    setSuccessBooking(null);
+    const {
+      name,
+      value,
+      type,
+      checked
+    } = event.target;
+
+    let newValue = value;
+
+    if (type === "checkbox") {
+      newValue = checked;
+    }
+
+    if (type === "number") {
+      newValue = Number(value);
+    }
+
+    setFormData({
+      ...formData,
+      [name]: newValue
+    });
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -19,39 +47,29 @@ export default function BookingForm() {
     setSuccessBooking(null);
 
 
-    if (name.trim().length < 3) {
+    if (formData.name.trim().length < 3) {
       setError("Bitte einen Namen mit mindestens 3 Zeichen eingeben!");
       return;
     }
 
-    if (email.trim() === "") {
+    if (formData.email.trim() === "") {
       setError("Bitte eine E-Mail-Adresse eingeben!");
       return;
     }
 
-    if (participants < 1) {
+    if (formData.participants < 1) {
       setError("Die Teilnehmerzahl muss mindestens 1 betragen!");
       return;
     }
 
-    if (course === "") {
-      setError("bitte einen Kurs auswählen!");
+    if (formData.course === "") {
+      setError("Bitte einen Kurs auswählen!");
       return;
     }
 
     setError("");
 
-    const booking = {
-      name,
-      email,
-      participants,
-      course,
-      company,
-      notes,
-      newsletter
-    };
-
-    console.log(booking);
+    console.log(formData, successBooking);
 
     const courseLabels = {
       html: "HTML & CSS",
@@ -62,18 +80,20 @@ export default function BookingForm() {
     // setSuccessMessage(`Die Buchung für <b>${name}</b> im Kurs <b>${courseLabels[course]}</b> wurde erfasst.`);
 
     setSuccessBooking({
-      name,
-      course: courseLabels[course]
+      name: formData.name,
+      course: courseLabels[formData.course],
     });
 
-
-    setName("");
-    setEmail("");
-    setParticipants(1);
-    setCourse("");
-    setCompany("");
-    setNotes("");
-    setNewsletter(false);
+    setFormData({
+      name: "",
+      email: "",
+      paticipants: 1,
+      course: "",
+      date: "",
+      company: "",
+      notes: "",
+      newsletter: false
+    });
 
   }
 
@@ -99,22 +119,22 @@ export default function BookingForm() {
 
         <div>
           <label htmlFor="name">Name</label>
-          <input type="text" id="name" value={name} onChange={event => setName(event.target.value)} />
+          <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} />
         </div>
 
         <div>
           <label htmlFor="email">E-Mail-Adresse</label>
-          <input type="text" id="email" value={email} onChange={event => setEmail(event.target.value)} />
+          <input type="text" name="email" id="email" value={formData.email} onChange={handleChange} />
         </div>
 
         <div>
           <label htmlFor="participants">Teilnehmer</label>
-          <input type="number" id="participants" value={participants} onChange={event => Number(setParticipants(event.target.value))} />
+          <input type="number" name="participants" id="participants" value={formData.participants} onChange={handleChange} />
         </div>
 
         <div>
           <label htmlFor="course">Kurs</label>
-          <select id="course" value={course} onChange={event => setCourse(event.target.value)}>
+          <select name="course" id="course" value={formData.course} onChange={handleChange}>
             <option value="" disabled>Bitte wählen</option>
             <option value="html">HTML & CSS</option>
             <option value="javascript">JavaScript</option>
@@ -123,18 +143,23 @@ export default function BookingForm() {
         </div>
 
         <div>
+          <label htmlFor="date">Datum</label>
+          <input type="date" name="date" id="date" value={formData.date} onChange={handleChange} />
+        </div>
+
+        <div>
           <label htmlFor="company">Firma</label>
-          <input type="text" id="company" value={company} onChange={event => setCompany(event.target.value)} />
+          <input type="text" name="company" id="company" value={formData.company} onChange={handleChange} />
         </div>
 
         <div>
           <label htmlFor="notes">Bemerkungen</label>
-          <textarea id="notes" value={notes} onChange={event => setNotes(event.target.value)} />
+          <textarea id="notes" name="notes" value={formData.notes} onChange={handleChange} />
         </div>
 
         <div>
           <label>
-            <input type="checkbox" checked={newsletter} onChange={event => setNewsletter(event.target.checked)} />
+            <input type="checkbox" name="newsletter" checked={formData.newsletter} onChange={handleChange} />
             Newsletter abonnieren
           </label>
         </div>
