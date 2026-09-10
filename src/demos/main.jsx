@@ -1,10 +1,10 @@
 import { createRoot } from "react-dom/client";
-import InteracionCard from "./InteractionCard";
+import PriceCalculator from "./PriceCalculator";
 
 function DemoApp() {
   return (
     <>
-      <InteracionCard />
+      <PriceCalculator />
     </>
   );
 }
