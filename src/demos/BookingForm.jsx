@@ -16,7 +16,7 @@ export default function BookingForm() {
   const [successBooking, setSuccessBooking] = useState(null);
 
   function handleChange(event) {
-    setSuccessBooking(null);
+
     const {
       name,
       value,

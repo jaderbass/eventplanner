@@ -10,6 +10,7 @@ import Search from "./components/Search.jsx";
 import EventList from "./components/EventList.jsx";
 import InfoBox from "./components/InfoBox.jsx";
 import Section from "./components/Section.jsx";
+import RegistrationManager from "./components/RegistrationManager.jsx";
 
 const root = createRoot(document.querySelector("#root"));
 
@@ -44,6 +45,9 @@ function App() {
               <button type="submit">Newsletter abonnieren</button>
             </form>
           </InfoBox>
+
+          <RegistrationManager />
+
         </div>
 
       </main>
