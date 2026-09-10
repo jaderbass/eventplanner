@@ -10,10 +10,6 @@ import Search from "./components/Search.jsx";
 import EventList from "./components/EventList.jsx";
 import InfoBox from "./components/InfoBox.jsx";
 import Section from "./components/Section.jsx";
-import InteracionCard from "./components/InteractionCard.jsx";
-import Counter from "./components/Counter.jsx";
-import Toggle from "./components/Toggle.jsx";
-import NameInput from "./components/NameInput.jsx";
 
 const root = createRoot(document.querySelector("#root"));
 
@@ -26,14 +22,6 @@ function App() {
       <Header />
       <main>
         <div className="container">
-
-          {/* <NameInput />
-
-          <Toggle />
-
-          <Counter />
-
-          <InteracionCard title={"Ereignisbehandlung"} /> */}
 
           <Search />
 
@@ -57,8 +45,11 @@ function App() {
             </form>
           </InfoBox>
         </div>
+
       </main>
+
       <Footer />
+
     </>
   );
 }

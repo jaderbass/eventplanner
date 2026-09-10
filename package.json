@@ -4,6 +4,7 @@
   "description": "Durchgängiges React-Kursprojekt.",
   "scripts": {
     "dev": "parcel index.html",
+    "demo": "parcel demos.html",
     "build": "parcel build index.html"
   },
   "repository": {
