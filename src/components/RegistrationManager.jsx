@@ -1,5 +1,8 @@
 import { useState } from "react";
+
+import events from "../data/events.js";
 import RegistrationList from "./RegistrationList";
+import RegistrationForm from "./RegistrationForm";
 
 export default function RegistrationManager() {
   const [formData, setFormData] = useState({
@@ -81,103 +84,46 @@ export default function RegistrationManager() {
     });
   }
 
+  function handleDelete(id) {
+    setRegistrations(
+      registrations.filter(
+        (registration) => registration.id !== id
+      )
+    )
+  }
+
   return (
     <section className="registration-manager">
       <h2>Event-Anmeldung</h2>
 
       {error && (
-        <p className="error-message">
+        <p className="alert error-message">
           {error}
         </p>
       )}
 
       {successBooking && (
-        <p className="success-message">
+        <p className="alert success-message">
           Die Anmeldung für{" "}
           <strong>{successBooking.name}</strong>{" "}
           wurde erfolgreich erfasst.
         </p>
       )}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">
-            Name
-          </label>
+      <RegistrationForm
+        formData={formData}
+        events={events}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      />
 
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email">
-            E-Mail
-          </label>
-
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="participants">
-            Teilnehmer
-          </label>
-
-          <input
-            type="number"
-            id="participants"
-            name="participants"
-            min="1"
-            value={formData.participants}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="eventId">
-            Veranstaltung
-          </label>
-
-          <select
-            id="eventId"
-            name="eventId"
-            value={formData.eventId}
-            onChange={handleChange}
-          >
-            <option value="" disabled>
-              Bitte wählen
-            </option>
-
-            <option value="1">
-              React Grundlagen
-            </option>
-
-            <option value="2">
-              JSX und Komponenten
-            </option>
-
-            <option value="3">
-              State und Events
-            </option>
-          </select>
-        </div>
-
-        <button type="submit">
-          Anmeldung senden
-        </button>
-      </form>
-
-      <RegistrationList registrations={registrations} />
+      <RegistrationList
+        formData={formData}
+        events={events}
+        registrations={registrations}
+        title="Aktuelle Anmeldungen"
+        onDelete={handleDelete}
+      />
 
     </section>
   );

@@ -7,9 +7,6 @@ body {
   margin: 0 auto;
 }
 
-form {
-  margin-bottom: 1rem;
-}
 
 .fw-normal {
   font-weight: normal !important;
@@ -19,6 +16,7 @@ form {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .event-card {
@@ -105,10 +103,14 @@ form {
 form {
   display: grid;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 label {
   font-weight: 600;
+  display: inline-block;
+  margin-right: 1rem;
+  width: 12rem;
 }
 
 input,
@@ -121,11 +123,24 @@ button {
 input,
 select,
 textarea {
+  width: 20rem;
   max-width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 0.375rem;
-  margin-bottom: 1rem;
+  margin: 0 1rem 1rem 0;
+}
+
+input {
+  &[type="checkbox"] {
+    display: inline;
+    padding: 0;
+    width: auto;
+  }
+
+  &[type="checkbox"]~label {
+    width: auto;
+  }
 }
 
 textarea {
@@ -138,7 +153,8 @@ button {
   border: 0;
   border-radius: 0.375rem;
   cursor: pointer;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+  justify-self: start;
 }
 
 .search-form {
@@ -156,4 +172,53 @@ button {
 
 .search-row button {
   flex: 0 0 auto;
+}
+
+/* ? === Registration List === */
+.registrations-header {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  gap: 1rem;
+}
+
+#filter-form {
+  display: flex;
+  align-items: flex-start;
+
+  button {
+    margin: 0;
+  }
+}
+
+.registration-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.registration-card {
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+
+/* ? === Alerts === */
+.alert {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.error-message {
+  color: #58151c;
+  background-color: #f8d7da;
+  border-color: #f1aeb5;
+}
+
+.success-message {
+  color: #0a3622;
+  background-color: #d1e7dd;
+  border: 1px solid #a3cfbb;
 }

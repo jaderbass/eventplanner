@@ -24,11 +24,11 @@ function App() {
       <main>
         <div className="container">
 
-          <Search />
+          {/* <Search />
 
           <InfoBox title="Hinweis">
             <p>Die Anmeldung ist ab sofort möglich.</p>
-          </InfoBox>
+          </InfoBox> */}
 
           <Section title="Nächste Veranstaltungen">
             <p>Hier findest Du eine Auswahl unserer kommenden Events.</p>
@@ -36,7 +36,7 @@ function App() {
             <EventList />
           </Section>
 
-          <InfoBox title="Achtung!">
+          {/* <InfoBox title="Achtung!">
             <p>Anmeldeschluss ist jeweils 14 Tage vor dem Kursbeginn.</p>
             <p>Aktuelle Infos und Änderungen findet Ihr auf unseren Social-Media-Kanälen oder Ihr meldet Euch zu unserem Newsletter an.</p>
             <form action="#" method="post">
@@ -44,7 +44,7 @@ function App() {
               <input type="email" name="email" placeholder="E-Mail-Adresse" />
               <button type="submit">Newsletter abonnieren</button>
             </form>
-          </InfoBox>
+          </InfoBox> */}
 
           <RegistrationManager />
 
