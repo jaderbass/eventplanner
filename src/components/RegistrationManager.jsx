@@ -24,6 +24,8 @@ export default function RegistrationManager() {
       type
     } = event.target;
 
+    setSuccessBooking(null);
+
     setFormData({
       ...formData,
       [name]:
