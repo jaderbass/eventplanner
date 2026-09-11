@@ -1,4 +1,5 @@
 import { useState } from "react";
+import RegistrationList from "./RegistrationList";
 
 export default function RegistrationManager() {
   const [formData, setFormData] = useState({
@@ -176,32 +177,8 @@ export default function RegistrationManager() {
         </button>
       </form>
 
-      <section className="registrations">
-        <h2>
-          Anmeldungen ({registrations.length})
-        </h2>
+      <RegistrationList registrations={registrations} />
 
-        {registrations.length === 0 && (
-          <p>
-            Noch keine Anmeldungen vorhanden.
-          </p>
-        )}
-
-        {registrations.map((registration) => (
-          <article
-            key={registration.id}
-            className="registration-card"
-          >
-            <h3>{registration.name}</h3>
-
-            <p>
-              E-Mail: {registration.email} <br />
-              Teilnehmer: {registration.participants} <br />
-              Event-ID: {registration.eventId}
-            </p>
-          </article>
-        ))}
-      </section>
     </section>
   );
 }
