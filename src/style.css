@@ -1,3 +1,9 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -7,6 +13,12 @@ body {
   margin: 0 auto;
 }
 
+/* ? === Flexbox / Grid === */
+
+.row {
+  display: flex;
+  gap: 1rem;
+}
 
 .fw-normal {
   font-weight: normal !important;
@@ -133,7 +145,7 @@ textarea {
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 0.375rem;
-  margin: 0 1rem 1rem 0;
+  margin: 1rem;
 }
 
 input {
@@ -181,15 +193,24 @@ button {
 
 /* ? === Registration List === */
 .registrations-header {
-  display: grid;
-  grid-template-columns: 2fr 5fr;
-  gap: 1rem;
-  align-content: end;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+
+  &>.info-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    gap: 1rem;
+    align-content: end;
+  }
 }
 
 #filter-form {
   display: flex;
   align-items: flex-start;
+
+  label {
+    margin-top: 1em;
+  }
 
   button {
     margin: 0;
