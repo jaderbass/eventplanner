@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import events from "../data/events.js";
 import RegistrationList from "./RegistrationList";
@@ -17,8 +17,24 @@ export default function RegistrationManager(
     eventId: ""
   });
 
+  // State-Definitionen
   const [error, setError] = useState("");
   const [successBooking, setSuccessBooking] = useState(null);
+
+  // useEffect-Definition
+  useEffect(() => {
+    if (!successBooking) {
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
+      setSuccessBooking(null);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    }
+  }, [successBooking]);
 
   function handleChange(event) {
     const {

@@ -1,0 +1,1 @@
+document.querySelector("#output").textContent = localStorage.getItem("test");

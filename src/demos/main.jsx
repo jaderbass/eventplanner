@@ -1,10 +1,10 @@
 import { createRoot } from "react-dom/client";
-import EffectDemo from "./EffectDemo.jsx";
+import NameEffect from "./NameEffect.jsx";
 
 function DemoApp() {
   return (
     <>
-      <EffectDemo />
+      <NameEffect />
     </>
   );
 }

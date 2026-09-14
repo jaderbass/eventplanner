@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./style.css";
 
@@ -12,12 +12,31 @@ import EventList from "./components/EventList.jsx";
 import InfoBox from "./components/InfoBox.jsx";
 import Section from "./components/Section.jsx";
 import RegistrationManager from "./components/RegistrationManager.jsx";
+import DeleteStorage from "./components/DeleteStorage.jsx";
 
 const root = createRoot(document.querySelector("#root"));
 
 // Haupt-Komponente für das UI
 function App() {
-  const [registrations, setRegistrations] = useState([]);
+  const [registrations, setRegistrations] = useState(() => {
+    try {
+      const savedRegistrations = localStorage.getItem("registrations");
+      return savedRegistrations ? JSON.parse(savedRegistrations) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "registrations",
+      JSON.stringify(registrations)
+    );
+  }, [registrations]);
+
+  useEffect(() => {
+    document.title = `EventPlanner - ${registrations.length} Anmeldungen`;
+  }, [registrations]);
 
   return (
     // Platzhalter für ein Root-Element
@@ -53,6 +72,10 @@ function App() {
 
           <RegistrationManager
             registrations={registrations}
+            setRegistrations={setRegistrations}
+          />
+
+          <DeleteStorage
             setRegistrations={setRegistrations}
           />
 
