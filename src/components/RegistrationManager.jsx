@@ -4,15 +4,18 @@ import events from "../data/events.js";
 import RegistrationList from "./RegistrationList";
 import RegistrationForm from "./RegistrationForm";
 
-export default function RegistrationManager() {
+export default function RegistrationManager(
+  {
+    registrations,
+    setRegistrations
+  }
+) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     participants: 1,
     eventId: ""
   });
-
-  const [registrations, setRegistrations] = useState([]);
 
   const [error, setError] = useState("");
   const [successBooking, setSuccessBooking] = useState(null);

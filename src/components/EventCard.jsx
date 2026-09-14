@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export default function EventCard({
+  id,
   title,
   date,
   level,
@@ -13,10 +14,15 @@ export default function EventCard({
   category,
   seats,
   featured,
-  registrationOpen
+  registrationOpen,
+  registrations
 }) {
   const [showDetails, setShowDetails] = useState(false);
   const [favorite, setFavorite] = useState(false);
+  const eventRegistrations = registrations.filter(
+    registration =>
+      String(registration.eventId) === String(id)
+  );
 
   return (
     <article
@@ -26,7 +32,12 @@ export default function EventCard({
         ${featured ? "featured" : ""}
         ${favorite ? "favorite" : ""}`}
     >
-      <h2> {title} {favorite && (<sup className="badge text-bg-success">Favorit</sup>)} </h2>
+      <h2> {title}
+        {eventRegistrations.length !== 0 && (
+          <sup className="badge text-bg-danger">{eventRegistrations.length}</sup>
+        )}
+        {favorite && (<sup className="badge text-bg-success">Favorit</sup>)}
+      </h2>
       {showDetails && (
         <div className="event-details">
           <p> {date} </p>

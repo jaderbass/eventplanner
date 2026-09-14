@@ -44,7 +44,6 @@ export default function RegistrationList({
             </select>
           </div>
 
-          <button type="submit">Filtern</button>
         </form>
       </header>
 

@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import { useState } from "react";
 
 import "./style.css";
 
@@ -16,6 +17,8 @@ const root = createRoot(document.querySelector("#root"));
 
 // Haupt-Komponente für das UI
 function App() {
+  const [registrations, setRegistrations] = useState([]);
+
   return (
     // Platzhalter für ein Root-Element
     // Fragment: gruppiert mehrere JSX-Elemente, ohne selbst ein HTML-Element im DOM zu erzeugen
@@ -33,7 +36,9 @@ function App() {
           <Section title="Nächste Veranstaltungen">
             <p>Hier findest Du eine Auswahl unserer kommenden Events.</p>
 
-            <EventList />
+            <EventList
+              registrations={registrations}
+            />
           </Section>
 
           {/* <InfoBox title="Achtung!">
@@ -46,7 +51,10 @@ function App() {
             </form>
           </InfoBox> */}
 
-          <RegistrationManager />
+          <RegistrationManager
+            registrations={registrations}
+            setRegistrations={setRegistrations}
+          />
 
         </div>
 
