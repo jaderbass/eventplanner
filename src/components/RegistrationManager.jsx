@@ -126,7 +126,7 @@ export default function RegistrationManager(
         formData={formData}
         events={events}
         registrations={registrations}
-        title="Aktuelle Anmeldungen"
+        title="Anmeldungen"
         onDelete={handleDelete}
       />
 

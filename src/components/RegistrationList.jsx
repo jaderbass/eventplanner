@@ -20,30 +20,33 @@ export default function RegistrationList({
   return (
     <section className="registrations">
       <header className="registrations-header">
-        <h2>
-          {title} ({filteredRegistrations.length})
-        </h2>
+        <div>
+          <h2>
+            {title}
+          </h2>
+          <p><small>
+            Registrierungen insgesamt: {registrations.length} <br />
+            gefilterte Registrierungen: {filteredRegistrations.length}
+          </small></p>
+        </div>
 
         <form id="filter-form">
-          <div>
-            <label htmlFor="eventFilter">Registrierungen filtern</label>
-            <select
-              id="eventFilter"
-              value={selectedEventId}
-              onChange={event => setSelectedEventId(event.target.value)}
-            >
-              <option value="all">Alle Veranstaltungen</option>
-              {events.map(event => (
-                <option
-                  key={event.id}
-                  value={event.id}
-                >
-                  {event.title}
-                </option>
-              ))}
-            </select>
-          </div>
-
+          <label htmlFor="eventFilter">Registrierungen filtern</label>
+          <select
+            id="eventFilter"
+            value={selectedEventId}
+            onChange={event => setSelectedEventId(event.target.value)}
+          >
+            <option value="all">Alle Veranstaltungen</option>
+            {events.map(event => (
+              <option
+                key={event.id}
+                value={event.id}
+              >
+                {event.title}
+              </option>
+            ))}
+          </select>
         </form>
       </header>
 

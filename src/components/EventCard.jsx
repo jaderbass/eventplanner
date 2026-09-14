@@ -17,12 +17,22 @@ export default function EventCard({
   registrationOpen,
   registrations
 }) {
+
+  // State-Werte
   const [showDetails, setShowDetails] = useState(false);
   const [favorite, setFavorite] = useState(false);
+
+  // abgeleitete Werte
   const eventRegistrations = registrations.filter(
     registration =>
       String(registration.eventId) === String(id)
   );
+  const participantsCount = eventRegistrations.reduce(
+    (sum, registration) => sum + registration.participants,
+    0
+  );
+
+  const freeSeats = seats - participantsCount;
 
   return (
     <article
@@ -32,7 +42,7 @@ export default function EventCard({
         ${featured ? "featured" : ""}
         ${favorite ? "favorite" : ""}`}
     >
-      <h2> {title}
+      <h2>{title}
         {eventRegistrations.length !== 0 && (
           <sup className="badge text-bg-danger">{eventRegistrations.length}</sup>
         )}
@@ -49,10 +59,12 @@ export default function EventCard({
           <p> {online ? "Online" : location} </p>
           <p> Kategorie: {category} </p>
           <p>
-            freie Plätze: {seats} {seats === 0 && <i>(ausgebucht)</i>} <br />
-            {seats > 0 && seats < 3 && (<small>Nur noch wenige Plätze</small>)}
+            verfügbare Plätze: {seats} {freeSeats === 0 && <i>(ausgebucht)</i>} <br />
+            {freeSeats > 0 && freeSeats < 3 && (<small>Nur noch wenige Plätze</small>)}
           </p>
-          <p> {featured && <strong>Empfohen</strong>} </p>
+          <p> Angemeldete Personen: {participantsCount}</p>
+          <p> freie Plätze: {freeSeats}</p>
+          <p> {featured && <strong>Empfohlen</strong>} </p>
         </div>
       )}
 

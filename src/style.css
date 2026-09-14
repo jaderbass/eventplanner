@@ -184,6 +184,7 @@ button {
   display: grid;
   grid-template-columns: 2fr 5fr;
   gap: 1rem;
+  align-content: end;
 }
 
 #filter-form {

@@ -1,10 +1,10 @@
 import { createRoot } from "react-dom/client";
-import BookingForm from "./BookingForm";
+import EffectDemo from "./EffectDemo.jsx";
 
 function DemoApp() {
   return (
     <>
-      <BookingForm />
+      <EffectDemo />
     </>
   );
 }
