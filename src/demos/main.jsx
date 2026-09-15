@@ -1,10 +1,10 @@
 import { createRoot } from "react-dom/client";
-import PreviousValue from "./PreviousValue.jsx";
+import PreviousName2 from "./PreviousName2.jsx";
 
 function DemoApp() {
   return (
     <>
-      <PreviousValue />
+      <PreviousName2 />
     </>
   );
 }
