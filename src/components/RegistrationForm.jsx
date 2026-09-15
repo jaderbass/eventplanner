@@ -2,7 +2,8 @@ export default function RegistrationForm({
   formData,
   events,
   onChange,
-  onSubmit
+  onSubmit,
+  nameInputRef
 }) {
   return (
     <form className="row section-content" onSubmit={onSubmit}>
@@ -12,6 +13,7 @@ export default function RegistrationForm({
             Name
           </label>
           <input
+            ref={nameInputRef}
             type="text"
             id="name"
             name="name"

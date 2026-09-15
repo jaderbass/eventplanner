@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import events from "../data/events.js";
 import RegistrationList from "./RegistrationList";
@@ -10,14 +10,16 @@ export default function RegistrationManager(
     setRegistrations
   }
 ) {
+  // useRef-Definition
+  const nameInputRef = useRef(null);
+
+  // useState-Definitionen
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     participants: 1,
     eventId: ""
   });
-
-  // State-Definitionen
   const [error, setError] = useState("");
   const [successBooking, setSuccessBooking] = useState(null);
 
@@ -103,6 +105,10 @@ export default function RegistrationManager(
       participants: 1,
       eventId: ""
     });
+
+    // Name-Feld soll den Fokus bekommen.
+    // Das ? ist dafür zuständig, dass dies nur dann passiert, wenn nameInputRef.current NICHT null ist.
+    nameInputRef.current?.focus();
   }
 
   function handleDelete(id) {
@@ -136,6 +142,7 @@ export default function RegistrationManager(
         events={events}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        nameInputRef={nameInputRef}
       />
 
       <RegistrationList

@@ -1,10 +1,10 @@
 import { createRoot } from "react-dom/client";
-import NameEffect from "./NameEffect.jsx";
+import FocusInput from "./FocusInput.jsx";
 
 function DemoApp() {
   return (
     <>
-      <NameEffect />
+      <FocusInput />
     </>
   );
 }
