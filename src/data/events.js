@@ -1,7 +1,7 @@
 const events = [
   {
     id: 1,
-    title: "React Grundlagen",
+    title: "React Advanced",
     date: "12. September 2026",
     location: "Raum 1",
     speaker: "Anna Müller",
@@ -33,7 +33,7 @@ const events = [
   },
   {
     id: 3,
-    title: "HTML/CSS Grundlagen",
+    title: "HTML/CSS Advanced",
     date: "12. September 2026",
     location: "Raum 2",
     speaker: "Heribert Hüller",
