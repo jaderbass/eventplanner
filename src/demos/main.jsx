@@ -1,10 +1,10 @@
 import { createRoot } from "react-dom/client";
-import FocusInput from "./FocusInput.jsx";
+import PreviousValue from "./PreviousValue.jsx";
 
 function DemoApp() {
   return (
     <>
-      <FocusInput />
+      <PreviousValue />
     </>
   );
 }
