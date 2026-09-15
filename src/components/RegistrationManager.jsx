@@ -11,7 +11,17 @@ export default function RegistrationManager(
   }
 ) {
   // useRef-Definition
-  const nameInputRef = useRef(null);
+  /* const nameInputRef = useRef(null);
+  const emailInputRef = useRef(null);
+  const eventIdInputRef = useRef(null);
+  const participantsInputRef = useRef(null); */
+
+  const inputRefs = {
+    name: useRef(null),
+    email: useRef(null),
+    eventId: useRef(null),
+    participants: useRef(null)
+  }
 
   // useState-Definitionen
   const [formData, setFormData] = useState({
@@ -64,23 +74,25 @@ export default function RegistrationManager(
 
     if (formData.name.trim() === "") {
       setError("Bitte einen Namen eingeben.");
+      inputRefs.name.current.focus();
       return;
     }
 
     if (formData.email.trim() === "") {
       setError("Bitte eine E-Mail-Adresse eingeben.");
+      inputRefs.email.current.focus();
       return;
     }
 
     if (formData.eventId === "") {
       setError("Bitte eine Veranstaltung auswählen.");
+      inputRefs.eventId.current.focus();
       return;
     }
 
     if (formData.participants < 1) {
-      setError(
-        "Die Teilnehmerzahl muss mindestens 1 betragen."
-      );
+      setError("Die Teilnehmerzahl muss mindestens 1 betragen.");
+      inputRefs.participants.current.focus();
       return;
     }
 
@@ -142,7 +154,7 @@ export default function RegistrationManager(
         events={events}
         onChange={handleChange}
         onSubmit={handleSubmit}
-        nameInputRef={nameInputRef}
+        inputRefs={inputRefs}
       />
 
       <RegistrationList

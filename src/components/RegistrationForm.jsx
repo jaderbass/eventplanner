@@ -3,7 +3,7 @@ export default function RegistrationForm({
   events,
   onChange,
   onSubmit,
-  nameInputRef
+  inputRefs
 }) {
   return (
     <form className="row section-content" onSubmit={onSubmit}>
@@ -13,7 +13,7 @@ export default function RegistrationForm({
             Name
           </label>
           <input
-            ref={nameInputRef}
+            ref={inputRefs.name}
             type="text"
             id="name"
             name="name"
@@ -26,6 +26,7 @@ export default function RegistrationForm({
             E-Mail
           </label>
           <input
+            ref={inputRefs.email}
             type="email"
             id="email"
             name="email"
@@ -41,6 +42,7 @@ export default function RegistrationForm({
             Teilnehmer
           </label>
           <input
+            ref={inputRefs.participants}
             type="number"
             id="participants"
             name="participants"
@@ -54,6 +56,7 @@ export default function RegistrationForm({
             Veranstaltung
           </label>
           <select
+            ref={inputRefs.eventId}
             id="eventId"
             name="eventId"
             value={formData.eventId}
