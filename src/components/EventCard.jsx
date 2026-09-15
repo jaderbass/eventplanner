@@ -43,9 +43,11 @@ export default function EventCard({
         ${favorite ? "favorite" : ""}`}
     >
       <h2>{title}
+        {" "}
         {eventRegistrations.length !== 0 && (
-          <sup className="badge text-bg-danger">{eventRegistrations.length}</sup>
+          <sup className="badge text-bg-danger rounded-circle">{eventRegistrations.length}</sup>
         )}
+        {" "}
         {favorite && (<sup className="badge text-bg-success">Favorit</sup>)}
       </h2>
       {showDetails && (

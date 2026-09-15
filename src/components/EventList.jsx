@@ -11,6 +11,7 @@ export default function EventList(
 ) {
   const [searchTerm, setSearchTerm] = useState("");
   const [eventType, setEventType] = useState("all");
+  const [registrationType, setRegistrationType] = useState("all");
 
   console.log(searchTerm);
 
@@ -31,7 +32,14 @@ export default function EventList(
         (eventType === "onsite" &&
           !event.online)
 
-      return matchesSearch && matchesType;
+      const matchesRegistration =
+        registrationType === "all" ||
+        (registrationType === "regOpen" &&
+          event.registrationOpen) ||
+        (registrationType === "regClosed" &&
+          !event.registrationOpen)
+
+      return matchesSearch && matchesType && matchesRegistration;
     });
 
 
@@ -42,6 +50,8 @@ export default function EventList(
         setSearchTerm={setSearchTerm}
         eventType={eventType}
         setEventType={setEventType}
+        registrationType={registrationType}
+        setRegistrationType={setRegistrationType}
       />
 
       <p>Treffer: {filteredEvents.length}</p>

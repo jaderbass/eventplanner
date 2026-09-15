@@ -67,6 +67,10 @@ body {
   }
 }
 
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
 .badge {
   --bs-badge-padding-x: 0.65em;
   --bs-badge-padding-y: 0.35em;
@@ -125,9 +129,7 @@ form {
 
 label {
   font-weight: 600;
-  display: inline-block;
-  margin-right: 1rem;
-  width: 12rem;
+  display: block;
 }
 
 input,
@@ -181,14 +183,18 @@ button {
 .search-row {
   display: flex;
   gap: 0.75rem;
-}
 
-.search-row input {
-  flex: 1;
-}
+  &>div {
+    flex: 1;
+  }
 
-.search-row button {
-  flex: 0 0 auto;
+  &>input {
+    flex: 1;
+  }
+
+  &>button {
+    flex: 0 0 auto;
+  }
 }
 
 /* ? === Registration List === */
