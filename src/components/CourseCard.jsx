@@ -7,7 +7,7 @@ export default function CourseCard({
   featured
 }) {
   return (
-    <article>
+    <article className="course-card">
       <h3>{title}</h3>
       <p>{description}</p>
       <p>Dauer: {duration} UE</p>
