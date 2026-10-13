@@ -6,7 +6,9 @@ const events = [
     location: "Erfurt",
     eventType: "Workshop",
     seats: 12,
-    online: false
+    online: false,
+    featured: true,
+    registrationOpen: true
   },
   {
     id: 2,
@@ -15,7 +17,9 @@ const events = [
     location: "Online",
     eventType: "Webinar",
     seats: 20,
-    online: true
+    online: true,
+    featured: true,
+    registrationOpen: true
   },
   {
     id: 3,
@@ -24,7 +28,9 @@ const events = [
     location: "Jena",
     eventType: "Meetup",
     seats: 0,
-    online: false
+    online: false,
+    featured: false,
+    registrationOpen: false
   },
   {
     id: 4,
@@ -33,7 +39,9 @@ const events = [
     location: "Nordhausen",
     eventType: "Workshop",
     seats: 8,
-    online: false
+    online: false,
+    featured: true,
+    registrationOpen: false
   }
 ];
 

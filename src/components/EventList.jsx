@@ -15,6 +15,8 @@ function EventList() {
           eventType={event.eventType}
           seats={event.seats}
           online={event.online}
+          featured={event.featured}
+          registrationOpen={event.registrationOpen}
         />
       ))}
     </section>
