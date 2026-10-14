@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destrukturierung</title>
+</head>
+
+<body>
+  <h1>Destrukturierung</h1>
+  <div id="output"></div>
+
+  <script>
+    function destrukturierung() {
+      return [2, function () { return 5; }];
+    }
+
+    let [b, c] = destrukturierung();
+
+    console.log(b, c());
+
+  </script>
+</body>
+
+</html>
