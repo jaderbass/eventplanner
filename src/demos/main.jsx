@@ -5,11 +5,12 @@ import StateProblem from "./components/StateProblem.jsx";
 import Counter from "./components/Counter.jsx";
 import Toggle from "./components/Toggle.jsx";
 import NameInput from "./components/NameInput.jsx";
+import LikeButton from "./components/LikeButton.jsx";
 
 const rootElement = document.querySelector("#root");
 const root = createRoot(rootElement);
 
 root.render(
   // <EventDemo />
-  <NameInput />
+  <LikeButton />
 );
