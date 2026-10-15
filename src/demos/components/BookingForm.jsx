@@ -28,6 +28,11 @@ function BookingForm() {
       value
     } = event.target;
 
+    const newValue =
+      name === "participants"
+        ? Number(value)
+        : value;
+
     setFormData({
       ...formData,
       [name]: value
