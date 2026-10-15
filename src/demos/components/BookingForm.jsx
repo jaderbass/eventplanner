@@ -28,6 +28,7 @@ function BookingForm() {
       value
     } = event.target;
 
+    /* ? Bei numerischen Werten sollte das value des Formularfeldes (string) und den number-Datetyp umgewandelt werden. */
     const newValue =
       name === "participants"
         ? Number(value)
