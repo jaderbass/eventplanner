@@ -35,7 +35,7 @@ function BookingForm() {
 
     setFormData({
       ...formData,
-      [name]: value
+      [name]: newValue
     });
   }
 
