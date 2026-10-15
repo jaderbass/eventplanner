@@ -2,12 +2,38 @@ import { useState } from "react";
 
 function BookingForm() {
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [participants, setParticipants] = useState(1);
+  /* ? Diese einzelnen States der Fromular-Elemente ... */
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [participants, setParticipants] = useState(1);
+  // const [phone, setPhone] = useState("");
+
+  /* ? ... werden durch diesen einen State ersetzt */
+  const [formData, setFormData] =
+    useState({
+      name: "",
+      email: "",
+      phone: "",
+      participants: 1
+    });
+
+  /* ? Die Error- und Success-States bleiben einzeln bestehen */
   const [error, setError] = useState("");
   const [successBooking, setSuccessBooking] = useState(null);
-  const [phone, setPhone] = useState("");
+
+  /* ? Mit diesem Eventhandler ersetzen wir die Arrow-Funktionen an den einzelnen Formularfeldern. Diese referenzieren dann alle auf diesen Eventhandler. */
+  function handleChange(event) {
+    const {
+      name,
+      value
+    } = event.target;
+
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  }
+
 
   function handleSubmit(event) {
     event.preventDefault(); // Standard-Ereignisbehandlung deaktivieren
@@ -15,39 +41,60 @@ function BookingForm() {
     setError("");
     setSuccessBooking(null);
 
-    if (name.trim() === "") {
+    /* ? Die State-Namen müssen durch die Objekt-Eigenschaften ersetzt werden.
+    aus 
+    name.trim() === ""
+
+    wird
+    formData.name.trim() === ""
+
+    usw.
+    */
+
+    if (formData.name.trim() === "") {
       setError("Bitte geben Sie einen Namen ein!");
       return;
     }
 
-    if (email.trim() === "") {
+    if (formData.email.trim() === "") {
       setError("Bitte geben Sie eine E-Mail-Adresse ein!");
       return;
     }
 
-    if (!email.includes("@")) {
+    if (!formData.email.includes("@")) {
       setError("Bitte geben Sie eine gültige E.Mail-Adresse ein!");
       return;
     }
 
-    if (phone.trim() !== "" && phone.trim().length < 5) {
+    if (formData.phone.trim() !== "" && formData.phone.trim().length < 5) {
       setError("Die Telefonnummer ist zu kurz.");
       return;
     }
 
-    if (participants < 1) {
+    if (formData.participants < 1) {
       setError("Es muss mindestens eine Person angemeldet werden!");
       return;
     }
 
-    setSuccessBooking({ name, participants });
+    setSuccessBooking({
+      name: formData.name,
+      participants: formData.participants
+    });
 
-    setName("");
-    setEmail("");
-    setPhone("");
-    setParticipants(1);
+    /* ? Auch die State-Resets müssen durch eine einzelne Setter-Funktion ersetzt werden. */
+    // setName("");
+    // setEmail("");
+    // setPhone("");
+    // setParticipants(1);
 
-    console.log({ name, email, phone, participants });
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      participants: 1
+    });
+
+    console.log({ formData });
 
   }
 
@@ -78,14 +125,13 @@ function BookingForm() {
 
         <div>
           <label htmlFor="name">Name*</label>{" "}
+          {/* ? An den Formularfeldern muss das name-Attribut gesetzt, die State-Variablen auf das formData-Objekt und die onChange-Arrow-Funktion auf eine Funktionsreferenz geändert werden. */}
           <input
             type="text"
-            name=""
+            name="name"
             id="name"
-            value={name}
-            onChange={(event) =>
-              setName(event.target.value)
-            }
+            value={formData.name}
+            onChange={handleChange}
           />
         </div>
 
@@ -93,12 +139,10 @@ function BookingForm() {
           <label htmlFor="email">Email*</label>{" "}
           <input
             type="email"
-            name=""
+            name="email"
             id="email"
-            value={email}
-            onChange={(event) =>
-              setEmail(event.target.value)
-            }
+            value={formData.email}
+            onChange={handleChange}
           />
         </div>
 
@@ -106,12 +150,10 @@ function BookingForm() {
           <label htmlFor="phone">Telefon</label>{" "}
           <input
             type="tel"
-            name=""
+            name="phone"
             id="phone"
-            value={phone}
-            onChange={(event) =>
-              setPhone(event.target.value)
-            }
+            value={formData.phone}
+            onChange={handleChange}
           />
         </div>
 
@@ -119,12 +161,10 @@ function BookingForm() {
           <label htmlFor="participants">Teilnehmer*</label>{" "}
           <input
             type="number"
-            name=""
+            name="participants"
             id="participants"
-            value={participants}
-            onChange={(event) =>
-              setParticipants(Number(event.target.value))
-            }
+            value={formData.participants}
+            onChange={handleChange}
           />
         </div>
 
