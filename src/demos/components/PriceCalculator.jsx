@@ -11,11 +11,16 @@ function PriceCalculator() {
 
   const total = subtotal - discountAmount;
 
+  const shipping =
+    total >= 50
+      ? 0
+      : 4.99;
+
+  const finalTotal = total + shipping;
+
   return (
     <>
-      <label htmlFor="price">
-        Einzelpreis
-      </label>{" "}
+      <label htmlFor="price">Einzelpreis</label>{" "}
 
       <input
         type="number"
@@ -24,13 +29,9 @@ function PriceCalculator() {
         onChange={(event) =>
           setPrice(Number(event.target.value))
         }
-      />
-      €
-      <br />
+      />{" €"}<br />
 
-      <label htmlFor="quantity">
-        Menge
-      </label>{" "}
+      <label htmlFor="quantity">Menge</label>{" "}
 
       <input
         type="number"
@@ -39,9 +40,7 @@ function PriceCalculator() {
         onChange={(event) =>
           setQuantity(Number(event.target.value))
         }
-      />
-      Stück
-      <br />
+      />{" Stück"}<br />
 
       <label htmlFor="discount">
         Rabatt
@@ -54,18 +53,9 @@ function PriceCalculator() {
           setDiscount(Number(event.target.value))
         }
       >
-        <option value="0">
-          kein Rabatt
-        </option>
-
-        <option value="10">
-          10 %
-        </option>
-
-        <option value="20">
-          20%
-        </option>
-
+        <option value="0">kein Rabatt</option>
+        <option value="10">10 %</option>
+        <option value="20">20%</option>
       </select>
 
       <p>
@@ -81,9 +71,17 @@ function PriceCalculator() {
       </p>
 
       <p>
-        Gesamt:
+        Versand:
         {" "}
-        {total.toFixed(2)} €
+        {shipping === 0
+          ? "kostenlos"
+          : `${shipping.toFixed(2)} €`}
+      </p>
+
+      <p>
+        Endbetrag:
+        {" "}
+        {finalTotal.toFixed(2)} €
       </p>
 
     </>
