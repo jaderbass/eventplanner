@@ -1,6 +1,7 @@
 function RegistrationForm({
   formData,
   error,
+  events,
   onChange,
   onSubmit
 }) {
@@ -29,6 +30,24 @@ function RegistrationForm({
           value={formData.email}
           onChange={onChange}
         />
+      </div>
+
+      <div>
+        <label htmlFor="eventId">Veranstaltung*</label>
+        <select
+          id="eventId"
+          name="eventId"
+          value={formData.eventId}
+          onChange={onChange}
+        >
+          <option value="">Bitte auswählen!</option>
+
+          {events.map((event) => (
+            <option key={event.id} value={event.id}>
+              {event.title}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div>

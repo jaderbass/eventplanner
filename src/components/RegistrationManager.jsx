@@ -1,8 +1,17 @@
 import { useState } from "react";
 import RegistrationForm from "./RegistrationForm";
 
+import events from "../data/events";
+import RegistrationList from "./RegistrationList";
+
 function RegistrationManager() {
-  const [formData, setFormData] = useState({ name: "", email: "", participants: 1 });
+  const [formData, setFormData] =
+    useState({
+      name: "",
+      email: "",
+      participants: 1,
+      eventId: ""
+    });
   const [registrations, setRegistrations] = useState([]);
   const [error, setError] = useState("");
 
@@ -15,14 +24,22 @@ function RegistrationManager() {
   function handleChange(event) {
     const { name, value } = event.target;
 
-    const newValue =
-      name === "participants"
-        ? Number(value)
-        : value;
+    let newValue = value;
+
+    if (name === "participants") {
+      newValue = Number(value);
+    }
+
+    if (name === "eventId") {
+      newValue =
+        value === ""
+          ? ""
+          : Number(value);
+    }
 
     setFormData({
       ...formData,
-      [name]: value
+      [name]: newValue
     });
   }
 
@@ -37,15 +54,20 @@ function RegistrationManager() {
     }
 
     if (formData.email.trim() === "") {
-      setError("Bitte geben Sie eine E-Mail-SAdresse an!");
+      setError("Bitte geben Sie eine E-Mail-Adresse an!");
       return;
+    }
+
+    if (formData.eventId === "") {
+      setError("Bitte wählen Sie eine Veranstaltung aus!");
     }
 
     const newRegistration = {
       id: Date.now(),
       name: formData.name,
       email: formData.email,
-      participants: formData.participants
+      participants: formData.participants,
+      eventId: formData.eventId
     }
 
     setRegistrations([
@@ -56,7 +78,8 @@ function RegistrationManager() {
     setFormData({
       name: "",
       email: "",
-      participants: 1
+      participants: 1,
+      eventId: ""
     });
   }
 
@@ -67,36 +90,17 @@ function RegistrationManager() {
       <RegistrationForm
         formData={formData}
         error={error}
+        events={events}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
 
       <h3>Aktuelle Anmeldungen</h3>
 
-      <p>
-        Anmeldungen: {" "} {registrations.length === 0
-          ? "Noch keine Anmeldungen vorhanden."
-          : registrations.length}
-      </p>
-
-      <p>
-        Teilnehmer gesamt: {" "} {participantsCount}
-      </p>
-
-      <div className="registration-list">
-        {registrations.map(
-          (registration) => (
-            <article
-              key={registration.id}
-              className="registration-card"
-            >
-              <h4>{registration.name}</h4>
-              <p>{registration.email}</p>
-              <p>Teilnehmer:{" "} {registration.participants}</p>
-            </article>
-          )
-        )}
-      </div>
+      <RegistrationList
+        registrations={registrations}
+        participantsCount={participantsCount}
+      />
 
     </section>
   );
