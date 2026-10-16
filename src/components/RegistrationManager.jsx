@@ -15,14 +15,19 @@ function RegistrationManager() {
   const [registrations, setRegistrations] = useState([]);
   const [error, setError] = useState("");
 
-  let participantsCount = 0;
-
-  for (const registration of registrations) {
-    participantsCount += Number(registration.participants);
-  }
+  const participantsCount =
+    registrations.reduce(
+      (sum, registration) => sum + registration.participants, 0
+    );
 
   function handleChange(event) {
     const { name, value } = event.target;
+
+    const eventRegistrations =
+      registrations.filter(
+        (registration) =>
+          registration.eventId === event.id
+      );
 
     let newValue = value;
 
@@ -83,6 +88,19 @@ function RegistrationManager() {
     });
   }
 
+  function handleDeleteRegistration(id) {
+    const confirmed =
+      window.confirm("Registrierung wirklich löschen?");
+
+    if (!confirmed) return;
+
+    setRegistrations(
+      registrations.filter(
+        (registration) => registration.id !== id
+      )
+    );
+  }
+
   return (
     <section>
       <h2>Anmeldungen</h2>
@@ -100,6 +118,9 @@ function RegistrationManager() {
       <RegistrationList
         registrations={registrations}
         participantsCount={participantsCount}
+        events={events}
+        onDelete={handleDeleteRegistration}
+        onDeleteAll={setRegistrations}
       />
 
     </section>

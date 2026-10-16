@@ -33,7 +33,24 @@ section {
 .event-list {
   display: grid;
   gap: 1rem;
+  grid-template-rows: auto;
   margin-bottom: 1.5rem;
+}
+
+@media screen and (min-width: 576px) {
+
+  .course-list,
+  .event-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  .course-list,
+  .event-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .course-card,
@@ -142,4 +159,31 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   padding: 1rem;
+}
+
+/* ? === Alerts === */
+.alert {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  padding: .75rem;
+  margin-bottom: 1.5rem;
+}
+
+.error-message,
+.form-error {
+  color: #58151c;
+  background-color: #f8d7da;
+  border-color: #f1aeb5;
+}
+
+.form-error {
+  width: 20rem;
+  max-width: 100%;
+}
+
+.success-message {
+  color: #0a3622;
+  background-color: #d1e7dd;
+  border: 1px solid #a3cfbb;
 }

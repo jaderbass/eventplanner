@@ -69,7 +69,7 @@ function EventCard({
       )}
 
       <button disabled={seats === 0 || !registrationOpen}>
-        Anmelden
+        zur Anmeldung
       </button>
 
     </article>

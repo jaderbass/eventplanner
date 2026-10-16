@@ -3,23 +3,25 @@ import EventCard from "./EventCard";
 
 function EventList() {
   return (
-    <section className="event-list">
+    <>
       <h2>Veranstaltungen</h2>
+      <section className="event-list">
 
-      {events.map((event) => (
-        <EventCard
-          key={event.id}
-          title={event.title}
-          date={event.date}
-          location={event.location}
-          eventType={event.eventType}
-          seats={event.seats}
-          online={event.online}
-          featured={event.featured}
-          registrationOpen={event.registrationOpen}
-        />
-      ))}
-    </section>
+        {events.map((event) => (
+          <EventCard
+            key={event.id}
+            title={event.title}
+            date={event.date}
+            location={event.location}
+            eventType={event.eventType}
+            seats={event.seats}
+            online={event.online}
+            featured={event.featured}
+            registrationOpen={event.registrationOpen}
+          />
+        ))}
+      </section>
+    </>
   );
 }
 
