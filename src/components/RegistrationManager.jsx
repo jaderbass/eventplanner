@@ -1,10 +1,13 @@
 import { useState } from "react";
-import RegistrationForm from "./RegistrationForm";
 
 import events from "../data/events";
+import RegistrationForm from "./RegistrationForm";
 import RegistrationList from "./RegistrationList";
 
-function RegistrationManager() {
+function RegistrationManager({
+  registrations,
+  setRegistrations
+}) {
   const [formData, setFormData] =
     useState({
       name: "",
@@ -12,7 +15,7 @@ function RegistrationManager() {
       participants: 1,
       eventId: ""
     });
-  const [registrations, setRegistrations] = useState([]);
+
   const [error, setError] = useState("");
 
   const participantsCount =

@@ -1,7 +1,9 @@
 import events from "../data/events";
 import EventCard from "./EventCard";
 
-function EventList() {
+function EventList({
+  registrations
+}) {
   return (
     <>
       <h2>Veranstaltungen</h2>
@@ -10,6 +12,7 @@ function EventList() {
         {events.map((event) => (
           <EventCard
             key={event.id}
+            id={event.id}
             title={event.title}
             date={event.date}
             location={event.location}
@@ -18,6 +21,7 @@ function EventList() {
             online={event.online}
             featured={event.featured}
             registrationOpen={event.registrationOpen}
+            registrations={registrations}
           />
         ))}
       </section>

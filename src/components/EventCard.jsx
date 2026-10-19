@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function EventCard({
+  id,
   title,
   date,
   location,
@@ -8,10 +9,17 @@ function EventCard({
   seats,
   online,
   featured,
-  registrationOpen
+  registrationOpen,
+  registrations
 }) {
   const [showDetails, setShowDetails] = useState(false);
   const [favorite, setFavorite] = useState(false);
+
+  const eventRegistrations =
+    registrations.filter(
+      (registration) =>
+        registration.eventId === id
+    );
 
   return (
     <article className="event-card">
@@ -56,6 +64,11 @@ function EventCard({
         <div className="event-card-details">
           <p>Datum: {date}</p>
           <p>Typ: {eventType}</p>
+
+          {eventRegistrations.length === 0
+            ? (<p>noch keine Anmeldungen</p>)
+            : (<p>Anmeldungen: {eventRegistrations.length}</p>)}
+
           <p>
             {seats > 0
               ? `Noch ${seats} Plätze verfügbar`
