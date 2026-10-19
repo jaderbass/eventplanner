@@ -21,6 +21,16 @@ function EventCard({
         registration.eventId === id
     );
 
+  const participantCount =
+    eventRegistrations.reduce(
+      (sum, registration) => sum + Number(registration.participants),
+      0
+    );
+
+  const freeSeats = seats - participantCount;
+
+  const displayFreeSeats = Math.max(freeSeats, 0);
+
   return (
     <article className="event-card">
       {featured && (
@@ -70,8 +80,12 @@ function EventCard({
             : (<p>Anmeldungen: {eventRegistrations.length}</p>)}
 
           <p>
-            {seats > 0
-              ? `Noch ${seats} Plätze verfügbar`
+            Angemeldete Teilnehmer: {participantCount}
+          </p>
+
+          <p>
+            {displayFreeSeats > 0
+              ? `Noch ${displayFreeSeats} Plätze verfügbar`
               : "Ausgebucht"}
           </p>
         </div>

@@ -16,7 +16,7 @@ const events = [
     date: "2026-10-22",
     location: "Online",
     eventType: "Webinar",
-    seats: 20,
+    seats: 100,
     online: true,
     featured: true,
     registrationOpen: true
@@ -27,21 +27,21 @@ const events = [
     date: "2026-10-26",
     location: "Jena",
     eventType: "Meetup",
-    seats: 0,
+    seats: 20,
     online: false,
     featured: false,
-    registrationOpen: false
+    registrationOpen: true
   },
   {
     id: 4,
     title: "CSS Layout Lab",
-    date: "2026-10-15",
+    date: "2026-11-16",
     location: "Nordhausen",
     eventType: "Workshop",
-    seats: 8,
+    seats: 10,
     online: false,
     featured: true,
-    registrationOpen: false
+    registrationOpen: true
   }
 ];
 

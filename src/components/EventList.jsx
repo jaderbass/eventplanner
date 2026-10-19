@@ -9,8 +9,8 @@ function EventList({
       <h2>Veranstaltungen</h2>
       <section className="event-list">
 
-        {events.map((event) => (
-          <EventCard
+        {events.map((event) => {
+          return (<EventCard
             key={event.id}
             id={event.id}
             title={event.title}
@@ -22,8 +22,8 @@ function EventList({
             featured={event.featured}
             registrationOpen={event.registrationOpen}
             registrations={registrations}
-          />
-        ))}
+          />)
+        })}
       </section>
     </>
   );
