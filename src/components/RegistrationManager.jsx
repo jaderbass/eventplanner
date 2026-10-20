@@ -16,7 +16,7 @@ function RegistrationManager({
       eventId: ""
     });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
   const [successBooking, setSuccessBooking] = useState(null);
 
@@ -71,20 +71,37 @@ function RegistrationManager({
   function handleSubmit(event) {
     event.preventDefault();
 
-    setError("");
+    setError(null);
 
     if (formData.name.trim() === "") {
-      setError("Bitte geben Sie Ihren Namen ein!");
+      setError({
+        field: "name",
+        message: "Bitte geben Sie Ihren Namen ein!"
+      });
       return;
     }
 
     if (formData.email.trim() === "") {
-      setError("Bitte geben Sie eine E-Mail-Adresse an!");
+      setError({
+        field: "email",
+        message: "Bitte geben Sie eine E-Mail-Adresse an!"
+      });
       return;
     }
 
     if (formData.eventId === "") {
-      setError("Bitte wählen Sie eine Veranstaltung aus!");
+      setError({
+        field: "eventId",
+        message: "Bitte wählen Sie eine Veranstaltung aus!"
+      });
+      return;
+    }
+
+    if (formData.participants < 1) {
+      setError({
+        field: "participants",
+        message: "Bitte wählen Sie mindestens 1 Teilnehmer aus!"
+      });
       return;
     }
 
