@@ -182,7 +182,8 @@ textarea {
   max-width: 100%;
 }
 
-.success-message {
+.success-message,
+.form-success {
   color: #0a3622;
   background-color: #d1e7dd;
   border: 1px solid #a3cfbb;

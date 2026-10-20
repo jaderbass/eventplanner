@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import events from "../data/events";
 import RegistrationForm from "./RegistrationForm";
@@ -19,6 +19,8 @@ function RegistrationManager({
   const [error, setError] = useState(null);
 
   const [successBooking, setSuccessBooking] = useState(null);
+
+  const nameInputRef = useRef(null);
 
   const participantsCount =
     registrations.reduce(
@@ -129,6 +131,8 @@ function RegistrationManager({
       participants: 1,
       eventId: ""
     });
+
+    nameInputRef.current?.focus();
   }
 
   function handleDeleteRegistration(id) {
@@ -149,7 +153,7 @@ function RegistrationManager({
       <h2>Anmeldungen</h2>
 
       {successBooking && (
-        <p className="form-success">
+        <p className="alert form-success">
           Anmeldung für {successBooking.name}
           {" "}wurde gespeichert.
         </p>
@@ -161,6 +165,7 @@ function RegistrationManager({
         events={events}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        nameInputRef={nameInputRef}
       />
 
       <h3>Aktuelle Anmeldungen</h3>

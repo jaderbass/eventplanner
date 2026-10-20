@@ -3,7 +3,8 @@ function RegistrationForm({
   error,
   events,
   onChange,
-  onSubmit
+  onSubmit,
+  nameInputRef
 }) {
   return (
     <form onSubmit={onSubmit} noValidate>
@@ -11,6 +12,7 @@ function RegistrationForm({
       <div>
         <label htmlFor="name">Name*</label>
         <input
+          ref={nameInputRef}
           type="text"
           id="name"
           name="name"

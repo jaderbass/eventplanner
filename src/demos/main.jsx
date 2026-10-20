@@ -9,10 +9,11 @@ import LikeButton from "./components/LikeButton.jsx";
 import PriceCalculator from "./components/PriceCalculator.jsx";
 import BookingForm from "./components/BookingForm.jsx";
 import EffectDemo from "./components/EffectDemo.jsx";
+import FocusInput from "./components/FocusInput.jsx";
 
 const rootElement = document.querySelector("#root");
 const root = createRoot(rootElement);
 
 root.render(
-  <EffectDemo />
+  <FocusInput />
 );
