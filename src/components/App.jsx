@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Notice from "./Notice";
 import EventList from "./EventList";
 import RegistrationManager from "./RegistrationManager";
+import SearchField from "./SearchField";
 
 export default function App() {
   const [registrations, setRegistrations] = useState(() => {
@@ -17,6 +18,8 @@ export default function App() {
     }
   });
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     localStorage.setItem(
       "registrations",
@@ -29,7 +32,13 @@ export default function App() {
       <Header />
 
       <main>
+        <SearchField
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+        />
+
         <EventList
+          searchTerm={searchTerm}
           registrations={registrations}
         />
 
